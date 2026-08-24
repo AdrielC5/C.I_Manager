@@ -101,4 +101,13 @@ for item in resultado:
     print("Viagem:", item["viagem"])
     print("------------------")
 
-print(extrair_bairro(ci_quebrada))
+from openpyxl import Workbook
+
+wb = Workbook()
+ws = wb.active
+ws.append(["Cliente", "Tipo", "Data", "Endereço", "Bairro", "Viagem"])
+
+for item in resultado:
+    ws.append([item["cliente"], item["tipo"], item["data"], item["endereco"], item["bairro"], item["viagem"]])
+
+wb.save("servicos.xlsx")
